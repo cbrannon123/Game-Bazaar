@@ -7,13 +7,33 @@ import './App.css';
 import Index from './components/Index';
 import Create from './components/Create';
 import Edit from './components/Edit';
-import Show from './components/Show';
-import Login from './components/Login';
+import SignUpPage from './components/SignUpForm/SignUpForm';
+import LogInPage from './components/LogIn/LogIn';
 
 import { Route, Switch, Link } from 'react-router-dom';
+import userService from './utils/userService';
 
 
 class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            user: userService.getUser()
+        }
+    }
+
+    handleSignupOrLogin = () => {
+        this.setState({ user: userService.getUser() });
+    };
+
+    handleLogOut = () => {
+        console.log("handlelogout called");
+        userService.logout();
+        console.log("logged out");
+        this.setState({ user: null });
+        console.log(this.state.user);
+    };
+
     render() {
         return (
             <div className="container">
@@ -27,16 +47,40 @@ class App extends Component {
                             <li className="nav-item">
                                 <Link to={'/login'} className="nav-link">Login</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={'/signup'} className="nav-link">signup</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
                 <Switch>
-                <Route exact path='/login' component={ Login } />
+                    
+                <Route
+            exact
+            path="/signup"
+            render={props => (
+              <SignUpPage
+                {...props}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            render={props => (
+              <LogInPage
+                {...props}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
 
                 </Switch>
             </div>
         )
     }
 }
+
 
 export default App;

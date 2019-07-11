@@ -1,4 +1,4 @@
-const Post = require('../models/post');
+const Post = require('../models/User');
 
 module.exports = {
   getAllPosts,
@@ -9,6 +9,7 @@ module.exports = {
   upvotePost,
   addComment,
   downvotePost
+
 };
 
 function updatePost(req, res) {
