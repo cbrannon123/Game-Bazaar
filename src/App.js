@@ -10,7 +10,7 @@ import Edit from './components/Edit';
 import SignUpPage from './components/SignUpForm/SignUpForm';
 import LogInPage from './components/LogIn/LogIn';
 
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import userService from './utils/userService';
 
 
@@ -34,6 +34,7 @@ class App extends Component {
         console.log(this.state.user);
     };
 
+
     render() {
         return (
             <div className="container">
@@ -41,40 +42,65 @@ class App extends Component {
                     <Link to={'/'} className="navbar-brand">Game Bazaar</Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <Link to={'/'} className="nav-link">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={'/login'} className="nav-link">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={'/signup'} className="nav-link">signup</Link>
-                            </li>
+                            {this.state.user ? (
+                                <div>
+                                    <li className="nav-item">
+                                        <Link to={'/'} className="nav-link">Home</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={'/'} className='NavBar-link' onClick={this.handleLogOut}>LOG OUT</Link>
+                                    </li>
+                                </div>
+                            ) : (
+                                    <div>
+                                        <li className="nav-item">
+                                            <Link to={'/login'} className="nav-link">Login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to={'/signup'} className="nav-link">signup</Link>
+                                        </li>
+                                    </div>
+                                )}
                         </ul>
                     </div>
                 </nav>
                 <Switch>
-                    
-                <Route
+
+                    <Route
+                        exact
+                        path="/signup"
+                        render={props => (
+                            <SignUpPage
+                                {...props}
+                                handleSignupOrLogin={this.handleSignupOrLogin}
+                            />
+                        )}
+                    />
+                    <Route
+                        exact
+                        path="/login"
+                        render={props => (
+                            <LogInPage
+                                {...props}
+                                handleSignupOrLogin={this.handleSignupOrLogin}
+                            />
+                        )}
+                    />
+                    {/* <Route
             exact
-            path="/signup"
-            render={props => (
-              <SignUpPage
-                {...props}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/login"
-            render={props => (
-              <LogInPage
-                {...props}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
+            path="/index"
+            render={props =>
+              userService.getUser() ? (
+                <IndexPage
+                  {...props}
+                  user={this.state.user}
+                  handleLogOut={this.handleLogOut}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          /> */}
 
                 </Switch>
             </div>
