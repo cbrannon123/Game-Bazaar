@@ -18,13 +18,13 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            user: userService.getUser()
-        }
-    }
+    //         user: userService.getUser()
+    //     }
+    // }
 
-    handleSignupOrLogin = () => {
-        this.setState({ user: userService.getUser() });
-    };
+    // handleSignupOrLogin = () => {
+    //     this.setState({ user: userService.getUser() });
+    // };
 
     handleLogOut = () => {
         console.log("handlelogout called");

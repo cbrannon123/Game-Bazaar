@@ -10,6 +10,7 @@ import Edit from './components/Edit';
 import SignUpPage from './components/SignUpForm/SignUpForm';
 import LogInPage from './components/LogIn/LogIn';
 import LocationInputPage from './pages/LocationInputPage/LocationInputPage';
+import NavBar from './components/NavBar/NavBar'
 
 
 
@@ -40,44 +41,21 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <Link to={'/'} className="navbar-brand">Game Bazaar</Link>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            {this.state.user ? (
-                                <div>
-                                    <li className="nav-item">
-                                        <Link to={'/'} className="nav-link">Home</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to={'/'} className='NavBar-link' onClick={this.handleLogOut}>LOG OUT</Link>
-                                    </li>
-                                    <span>hello, {this.state.user.name}</span>
-                                </div>
-                            ) : (
-                                <div>
-                                        <li className="nav-item">
-                                            <Link to={'/login'} className="nav-link">Login</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to={'/signup'} className="nav-link">signup</Link>
-                                        </li>
-                                    </div>
-                                )}
-                        </ul>
-                    </div>
-                </nav>
+            <div>
                 {this.state.user ? (
-                <LocationInputPage />
-                ):(
-              <span></span>
-
-                )}
-
-            
+                    <>
+                <NavBar 
+                user={this.state.user}
+                handleLogOut={this.handleLogOut}
+                />
+                    <LocationInputPage user={this.state.user} />
+                        </>
+                    ) : (
+                        
+                       <></>
+                        
+                    )}
                 <Switch>
-
                     <Route
                         exact
                         path="/signup"
@@ -98,10 +76,11 @@ class App extends Component {
                             />
                         )}
                     />
-                   
+
 
                 </Switch>
             </div>
+
         )
     }
 }
