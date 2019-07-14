@@ -16,6 +16,15 @@ const NavBar = (props) => {
                             <li className="nav-item">
                                 <Link to={'/login'} className='NavBar-link' onClick={props.handleLogOut}>LOG OUT</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={'/index'} className='NavBar-link' >index</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={'/location'} className='NavBar-link' >Enter location</Link>
+                            </li>
+                            <li>
+                                Welcome, {props.user.name}
+                            </li>
 
                         </div>
                     ) : (
