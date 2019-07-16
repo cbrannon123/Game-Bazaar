@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-
-// delete implementing in index
 import Index from '../index/Index';
-//import Create from './components/Create';
-//import Edit from './components/Edit';
+import Edit from '../../components/Edit'
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../../components/LogIn/LogIn';
 import LocationInputPage from '../LocationInputPage/LocationInputPage';
-import NavBar from '../../components/NavBar/NavBar'
+import NavBar from '../../components/NavBar/NavBar';
 
 
-
-
-import { Route, Switch, Link, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import userService from '../../utils/userService';
 
 
@@ -52,8 +47,6 @@ class App extends Component {
                         handleLogOut={this.handleLogOut}
                     />
 
-
-
                 </div>
                 <Switch>
                     <Route
@@ -66,6 +59,7 @@ class App extends Component {
                             />
                         )}
                     />
+
                     <Route
                         exact
                         path="/login"
@@ -76,14 +70,32 @@ class App extends Component {
                             />
                         )}
                     />
+
                     <Route exact path='/index' render={props => (
+                        userService.getUser() ?
                         <Index {...props}/>
+                        :
+                        <Redirect to='/login'/>
                     )} />
+
                     <Route exact path='/game' render={props => (
+                        userService.getUser() ?
                         <LocationInputPage 
                         {...props}
                         user={this.state.user}
                         />
+                        :
+                        <Redirect to='/login'/>
+                    )} />
+
+                    <Route exact path='/games/:gameid/edit' render={props => (
+                        userService.getUser() ?
+                        <Edit 
+                        {...props}
+                        user={this.state.user}
+                        />
+                        :
+                        <Redirect to='/login'/>
                     )} />
 
                 </Switch>
@@ -95,3 +107,5 @@ class App extends Component {
 
 
 export default App;
+
+

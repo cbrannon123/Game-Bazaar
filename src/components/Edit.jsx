@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { getGame, editGame } from '../services/api';
 
 class Edit extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            id: '',
             title: '',
             platform: '',
-            userId: this.props.user,
+            userId: this.props.user._id,
             userName: this.props.user.name,
             location: '',
             postedOn: Date()
@@ -16,48 +17,61 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        var id = this.props.match.params.id;
+        var gameid = this.props.match.params.gameid;
+        // console.log(this.props)
         var self = this;
-    
-        getPost(id).then(function(post) {
-          self.setState({ id: post._id, title: post.title, body: post.body })
+        getGame(gameid).then(function(json) {
+            // console.log(json)
+            self.setState({ id: gameid, title: json.title, platform: json.platform, location: json.location })
         })
+        console.log('hello comp Mount Edit.jsx', this.props)
     }
+
 
     handleSubmit = (e) => {
-        e.preventDefault()
-        var self = this
-        editGame(self.state).then(function(json) {
-            window.location = `/posts/${self.state.id}`
+        console.log('2Hello from handleSubmit Edit.jsx')
+        e.preventDefault();
+        editGame(this.state).then(function(json) {
+            window.location = '/index'
         })
+        
     }
-    handleTitle = (e) => {
-        this.setState({title: e.target.value})
-           
-    }
+        
+    
 
-    handleBody = (e) => {
-        this.setState({body: e.target.value})
-    }
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
     render() {
         return (
             <div>
-            <h1>Edit Post</h1>
-            <hr />
-            <form onSubmit={this.handleSubmit}>
-                <label>Post Title</label>
-                <input onChange={this.handleTitle} value={this.state.title} />
-                <br />
-
-                <label> Post Body</label>
-                <textarea onChange={this.handleBody} value={this.state.body}></textarea>
-                <br />
-                <input type="submit" value="Submit Post" />
-            </form>
-        </div>
+                <h3>Enter Game Info</h3>
+                <hr />
+                <form onSubmit={this.handleSubmit}>
+                    <label>Game Title</label>
+                    <input onChange={this.onChange} name= 'title' value={this.state.title} />
+                    <br />
+                    <label>Platform</label>
+                   <select onChange={this.onChange} name= 'platform' value={this.state.platform}>
+                       <option>Select</option>
+                       <option>PS4</option>
+                       <option>XBOX</option>
+                       <option>NSW</option>
+                   </select>
+                    <br />
+                    <label>Location</label>
+                    <input onChange={this.onChange} name='location' value={this.state.location} />
+                    <br/>
+                    
+                    <br />
+                    
+                    
+                    <input type="submit" value="Submit Info" />
+                </form>
+    
+            </div>
         )
     }
+
 }
 
 export default Edit;

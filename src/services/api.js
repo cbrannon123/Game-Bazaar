@@ -2,7 +2,7 @@ import tokenService from "../utils/tokenService";
 
 // index
 export function getAllGames() {
-    return fetch(`/api/index`).then(function(res) {
+    return fetch('/api/index').then(function(res) {
       return res.json();
     })
   }
@@ -16,7 +16,6 @@ export function getAllGames() {
   
   // create
   export function createGame(game) {
-    //console.log(game)
     return fetch('/api/game', {
       method: 'POST',
       body: JSON.stringify(game),
@@ -25,9 +24,7 @@ export function getAllGames() {
         'Authorization': "Bearer " + tokenService.getToken()
       }
     })
-    // .then(function(res) {
-    //   return res.json()
-    //})
+    
   }
   
   // edit
@@ -54,29 +51,16 @@ export function getAllGames() {
     });
   }
   
-  // // upvote/downvote posts
-  // export function upvotePost(id, type) {
-  //   var type = type === "downvote" ? "downvote" : "upvote";
-  //   return fetch(`/api/posts/${id}/${type}`, {
-  //     method: 'PUT',
-  //     body: JSON.stringify({
-  //       upvotes: 1
-  //     }),
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //   })
-  // }
   
-  // // add a comment to post
-  // export function addComment(postId, comment) {
-  //   return fetch(`/api/posts/${postId}/comments`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       body: comment
-  //     }),
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //   })
-  // }
+  // add a comment to post
+//   export function addComment(postId, comment) {
+//     return fetch(`/api/game/${id}/comments`, {
+//       method: 'POST',
+//       body: JSON.stringify({
+//         body: comment
+//       }),
+//       headers: {
+//         'content-type': 'application/json'
+//       }
+//     })
+//   }

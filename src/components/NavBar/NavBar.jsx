@@ -1,41 +1,42 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
 const NavBar = (props) => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/'} className="navbar-brand">Game Bazaar</Link>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <h1 className="navbar-brand">Game Bazaar</h1>
+            <br/>
+            {props.user ? (
+            <span className="navbar-brand">Hello {props.user.name}!</span>
+            ) : (
+                <span className="navbar-brand">Please Sign In !</span>
+            )}
+            <div className="" id="navbarNav">
+                <ul className="navbar-nav">
                     {props.user ? (
-                        <div>
-                            <li className="nav-item">
-                                <Link to={'/'} className="nav-link">Home</Link>
+                        <>
+                            
+                            <li className="nav-item active">
+                                <Link to={'/index'} className="nav-link">Home<span className="sr-only">(current)</span></Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={'/login'} className='NavBar-link' onClick={props.handleLogOut}>LOG OUT</Link>
+                                <Link to={'/game'} className='nav-link' >Enter A Game</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={'/index'} className='NavBar-link' >index</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={'/game'} className='NavBar-link' >Enter a Game</Link>
-                            </li>
-                            <li>
-                                Welcome, {props.user.name}
+                                <Link to={'/login'} className='nav-link' onClick={props.handleLogOut}>Log Out</Link>
                             </li>
 
-                        </div>
+                        </>
                     ) : (
-                            <div>
+                            <>
                                 <li className="nav-item">
-                                    <Link to={'/login'} className="nav-link">Login</Link>
+                                    <Link to={'/login'} className="nav-link">Log In</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/signup'} className="nav-link">signup</Link>
+                                    <Link to={'/signup'} className="nav-link">Sign Up</Link>
                                 </li>
-                            </div>
+                            </>
                         )}
                 </ul>
             </div>
