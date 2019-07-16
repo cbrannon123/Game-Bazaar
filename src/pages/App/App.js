@@ -14,6 +14,7 @@ import NavBar from '../../components/NavBar/NavBar'
 
 
 
+
 import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import userService from '../../utils/userService';
 
@@ -38,12 +39,7 @@ class App extends Component {
         console.log(this.state.user);
     };
 
-    addLocal = (city, zip, id) => {
-        console.log(city)
-        console.log(zip)
-        console.log(id)
-
-    }
+    
 
 
     render() {
@@ -80,12 +76,15 @@ class App extends Component {
                             />
                         )}
                     />
-                    <Route exact path='/index' render={(() => (
-                        <Index />
-                    ))} />
-                    <Route exact path='/location' render={(() => (
-                        <LocationInputPage />
-                    ))} />
+                    <Route exact path='/index' render={props => (
+                        <Index {...props}/>
+                    )} />
+                    <Route exact path='/game' render={props => (
+                        <LocationInputPage 
+                        {...props}
+                        user={this.state.user}
+                        />
+                    )} />
 
                 </Switch>
             </div>

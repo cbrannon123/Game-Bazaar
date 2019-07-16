@@ -20,7 +20,7 @@ const NavBar = (props) => {
                                 <Link to={'/index'} className='NavBar-link' >index</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={'/location'} className='NavBar-link' >Enter location</Link>
+                                <Link to={'/game'} className='NavBar-link' >Enter a Game</Link>
                             </li>
                             <li>
                                 Welcome, {props.user.name}

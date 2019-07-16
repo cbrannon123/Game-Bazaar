@@ -1,14 +1,13 @@
-const Post = require('../models/User');
+const Game = require('../models/Game');
 
 module.exports = {
-  getAllPosts,
+  getAllGames,
   getOnePost,
-  createPost,
-  deletePost,
+  createGame,
+  deleteGame,
   updatePost,
-  upvotePost,
   addComment,
-  downvotePost
+  
 
 };
 
@@ -18,48 +17,33 @@ function updatePost(req, res) {
   });
 }
 
-function deletePost(req, res) {
-  Post.findByIdAndRemove(req.params.id).then(function(post) {
-    res.status(200).json(post);
+function deleteGame(req, res) {
+  Game.findByIdAndRemove(req.params.id).then(function(game) {
+    res.status(200).json(game);
   });
 }
 
 function getOnePost(req, res) {
-  Post.findById(req.params.id).then(function(post) {
-    res.status(200).json(post);
+  Post.findById(req.params.id).then(function(game) {
+    res.status(200).json(game);
   });
 }
 
-function createPost(req, res) {
-  Post.create(req.body).then(function(post) {
-    res.status(201).json(post);
+ function createGame(req, res) {
+   console.log('>>>>>>>>>>', req.body)
+  Game.create(req.body).then(function(game) {
+    res.status(201).json(game);
   });
 }
 
-function getAllPosts(req, res) {
-  Post.find({}).then(function(posts) {
-    console.log(posts);
-    res.status(200).json(posts);
+ function getAllGames(req, res) {
+   Game.find({}).then(function(game) {
+    console.log(game);
+    res.status(200).json(game);
   });
 }
 
-function upvotePost(req, res) {
-  Post.findById(req.params.id).then(function(post) {
-    post.upvotes += 1;
-    post.save(function(post) {
-      res.status(200).json(post);
-    })
-  })
-}
 
-function downvotePost(req, res) {
-  Post.findById(req.params.id).then(function(post) {
-    post.upvotes -= 1;
-    post.save(function(post) {
-      res.status(200).json(post);
-    })
-  })
-}
 
 function addComment(req, res) {
   Post.findById(req.params.id).then(function(post) {
@@ -69,3 +53,15 @@ function addComment(req, res) {
     })
   })
 }
+
+
+// function createNewsPost(req, res) {
+//   console.log(req);
+//   User.findById(req.user._id).exec(function(err, user) {
+//     newsPost.create(req.body, function(err, newsPost) {
+//       newsPost.postedByUser = user._id;
+//       newsPost.save();
+//       res.status(201).json(newsPost);
+//     });
+//   });
+// }

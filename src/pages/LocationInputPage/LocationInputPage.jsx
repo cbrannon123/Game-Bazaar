@@ -1,72 +1,79 @@
 import React, { Component } from 'react';
-import LocationInputF from '../../components/LocationInputForm/LocationInputForm';
 import './LocationInputPage.css'
+import { createGame } from '../../services/api'
+
 
 
 
 
 class LocationInputPage extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
-            city: '',
-            zip: '',
+            title: '',
+            platform: '',
+            userId: this.props.user,
+            userName: this.props.user.name,
+            location: '',
+            postedOn: Date()
             
         }
     }
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        this.props.addLocal(this.state);
-        this.setState({
-            city: '',
-            zip: '',
-            
-
-        })
-    }
-
-    onChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
 
-    render() {
-        return (
-            <div>
-                <h3>Enter Your Location</h3>
-                <hr />
-                <form onSubmit={this.onSubmit}>
-                    <div>
-                        <input
-                            type='text'
-                            required={true}
-                            name='city'
-                            className='form-control'
-                            value={this.state.city}
-                            onChange={this.onChange}
-                            placeholder="enter your city"></input>
-                    </div>
-
-
-                    <input
-                        type='number'
-                        required={true}
-                        name='zip'
-                        className='form-control'
-                        value={this.state.zip}
-                        onChange={this.onChange}
-                        placeholder="enter your zip-code">
-
-                    </input>
-                    
-                    <br />
-                    <input type='submit' value='submit' className='btn btn-primary' />
-                </form >
-            </div>
-        )
-    }
+handleSubmit = (e) => {
+    e.preventDefault();
+    createGame(this.state).then(function() {
+        window.location = '/index'
+    })
+    
+ 
+    
 }
 
-export default LocationInputPage
+
+
+
+
+
+onChange = (e) => this.setState({ [e.target.name]: e.target.value })
+
+
+render() {
+    return (
+        <div>
+            <h3>Enter Game Info</h3>
+            <hr />
+            <form onSubmit={this.handleSubmit}>
+                <label>Post Title</label>
+                <input onChange={this.onChange} name= 'title' value={this.state.title} />
+                <br />
+                <label>Platform</label>
+               <select onChange={this.onChange} name= 'platform' value={this.state.platform}>
+                   <option>Select</option>
+                   <option>PS4</option>
+                   <option>XBOX</option>
+                   <option>NSW</option>
+               </select>
+                <br />
+                <label>Location</label>
+                <input onChange={this.onChange} name='location' value={this.state.location} />
+                <br/>
+                
+                <br />
+                
+                
+                <input type="submit" value="Submit Info" />
+            </form>
+
+        </div>
+    )
+}
+
+}
+
+export default LocationInputPage;
 
 
 

@@ -6,12 +6,13 @@ var gameSchema = new Schema({
     title: String,
     platform: {
         type: String,
-        enum: ['PS4', 'XBOX', 'Switch'],
-        default: 'PS4',
-        required: true
+        enum: ['PS4', 'XBOX', 'NSW'],
+        default: 'PS4'
+        
     },
     userId: String,
-    location: Number,
+    userName: String,
+    location: String,
     postedOn: Date,
     deletedAt: Date
 
