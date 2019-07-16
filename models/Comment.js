@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-    content: {
+    body: {
         type: String,
         required: true
     },
     userId: String,
-    gameId: String
+    gameId: String,
    
 });
 

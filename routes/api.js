@@ -10,6 +10,6 @@ router.post('/game', gamesController.createGame);
 router.get('/game/:id', gamesController.getOneGame);
 router.delete('/game/:id', gamesController.deleteGame);
 router.put('/game/:id', gamesController.updateGame);
-// router.post('/game/:id/comments', gamesController.addComment);
+router.post('/game/:id/comment', gamesController.addComment);
 
 module.exports = router;

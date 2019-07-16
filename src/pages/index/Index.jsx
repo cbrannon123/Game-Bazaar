@@ -59,7 +59,7 @@ class Index extends Component {
                             <p className="card-footer text-muted">{game.postedOn}
                                 <br />
                                 <br/>
-                                <Link to={`/game/${game._id}`} className="btn btn-secondary">View</Link></p>
+                                <Link to={`/show/${game._id}`} className="btn btn-secondary">View</Link></p>
                             {game.userId === this.state.currentId ? (
                                 <ul>
                                     <button  className='btn btn-danger' onClick={() => this.handleDelete(`${game._id}`)}>Delete Game</button>

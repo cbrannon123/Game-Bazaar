@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Index from '../index/Index';
-import Edit from '../../components/Edit'
+import Edit from '../../components/Edit';
+import Show from '../../components/Show';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../../components/LogIn/LogIn';
 import LocationInputPage from '../LocationInputPage/LocationInputPage';
@@ -81,6 +82,16 @@ class App extends Component {
                     <Route exact path='/game' render={props => (
                         userService.getUser() ?
                         <LocationInputPage 
+                        {...props}
+                        user={this.state.user}
+                        />
+                        :
+                        <Redirect to='/login'/>
+                    )} />
+
+                    <Route exact path='/show/:gameid' render={props => (
+                        userService.getUser() ?
+                        <Show 
                         {...props}
                         user={this.state.user}
                         />

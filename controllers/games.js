@@ -1,4 +1,5 @@
 const Game = require('../models/Game');
+const Comment = require('../models/Comment')
 
 module.exports = {
   getAllGames,
@@ -6,7 +7,7 @@ module.exports = {
   createGame,
   deleteGame,
   updateGame,
-  // addComment,
+  addComment,
   
 
 };
@@ -43,13 +44,22 @@ function getOneGame(req, res) {
 
 
 
+function addComment(req, res) {
+  Game.findById(req.params.id).populate('comment').then(function(game) {
+    console.log('Hello from add comment')
+    game.comment.push(req.body);
+    game.save(function(game) {
+      res.status(200).json(game);
+    })
+  })
+}
+
+
 // function addComment(req, res) {
 //   Game.findById(req.params.id).then(function(game) {
 //     game.comments.push(req.body);
-//     post.save(function(post) {
+//     game.save(function(post) {
 //       res.status(200).json(post);
 //     })
 //   })
 // }
-
-

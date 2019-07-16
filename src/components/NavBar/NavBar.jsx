@@ -6,17 +6,16 @@ const NavBar = (props) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <h1 className="navbar-brand">Game Bazaar</h1>
-            <br/>
+            <br />
             {props.user ? (
-            <span className="navbar-brand">Hello {props.user.name}!</span>
+                <span className="navbar-brand">Hello {props.user.name}!</span>
             ) : (
-                <span className="navbar-brand">Please Sign In !</span>
-            )}
+                    <span className="navbar-brand">Please Sign In !</span>
+                )}
             <div className="" id="navbarNav">
                 <ul className="navbar-nav">
                     {props.user ? (
                         <>
-                            
                             <li className="nav-item active">
                                 <Link to={'/index'} className="nav-link">Home<span className="sr-only">(current)</span></Link>
                             </li>
@@ -26,7 +25,6 @@ const NavBar = (props) => {
                             <li className="nav-item">
                                 <Link to={'/login'} className='nav-link' onClick={props.handleLogOut}>Log Out</Link>
                             </li>
-
                         </>
                     ) : (
                             <>
