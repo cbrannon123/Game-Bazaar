@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 var commentSchema = new Schema({
     body: {
         type: String,
         required: true
     },
-    userId: String,
-    gameId: String,
+    userId: Schema.Types.ObjectId,
+    gameId: Schema.Types.ObjectId,
    
 });
 
