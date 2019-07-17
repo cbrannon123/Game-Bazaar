@@ -34,20 +34,22 @@ class Show extends Component {
         e.preventDefault();
         var self = this;
         var gameid = this.props.match.params.gameid;
-        
-        addComment(gameid, self.state.commentBody).then(function(json) {
+
+        addComment(gameid, self.state.commentBody).then(function (json) {
             console.log('hello from handle submit')
-            getGame(self.state.gameid).then(function(game) {
-            self.setState({ title: game.title, 
-                            body: game.body, comment: game.comment, commentBody: '' })
-          })
+            getGame(self.state.gameid).then(function (game) {
+                self.setState({
+                    title: game.title,
+                    body: game.body, comment: game.comment, commentBody: ''
+                })
+            })
         });
-      }
+    }
 
     handleCommentBody = (e) => {
         console.log(e.target)
         this.setState({ commentBody: e.target.value })
-      }
+    }
 
 
 
@@ -63,16 +65,22 @@ class Show extends Component {
             )
         });
         return (
-            <div style={{textAlign:'center'}}>
-                <h3 >Game Info</h3>
+            <div className='card' style={{ textAlign: 'center' }}>
+                <h5 >Game Title </h5>
                 <hr />
-                <h1 className='card'>
-                    <span>{this.state.title}</span>
-                    <br />
-                    <span>{this.state.platform}</span>
-                    <span>{this.state.location}</span>
-                </h1>
-                <span>{this.state.userName}</span>
+                <h2  className="card-title">{this.state.title}</h2>
+                <hr />
+                <h5 >Platform </h5>
+                <hr />
+                <h2>{this.state.platform}</h2>
+                <hr/>
+                <h5 >Location </h5>
+                <hr />
+                <h2>{this.state.location}</h2>
+                <hr/>
+                <hr/>
+
+                <span>This game was submitted by -{this.state.userName}</span>
                 <div>
                     <br />
                     <br />
@@ -86,7 +94,7 @@ class Show extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>Add Comment</label>
                         <br />
-                        <textarea onChange={this.handleCommentBody} value={this.state.commentBody}></textarea>
+                        <textarea style={{border: '1px solid black'}}  onChange={this.handleCommentBody} value={this.state.commentBody}></textarea>
                         <br />
                         <input type="submit" value="Add comment" className='btn btn-dark' />
                     </form>

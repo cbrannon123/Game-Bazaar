@@ -13,6 +13,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
 .App-link {
@@ -20,5 +21,7 @@
 }
 
 body {
-  background-color: whitesmoke;
+  
+  background-color: lightslategray;
+  
 }

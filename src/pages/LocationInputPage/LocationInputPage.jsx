@@ -42,7 +42,7 @@ class LocationInputPage extends Component {
 
     render() {
         return (
-            <div style={{textAlign:'center'}}>
+            <div style={{textAlign:'center'}} className='card'>
                 <h3>Enter Game Info</h3>
                 <hr />
                 <form  onSubmit={this.handleSubmit}>

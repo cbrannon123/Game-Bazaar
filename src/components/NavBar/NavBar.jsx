@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import styles from './NavBar.module.css';
 
 const NavBar = (props) => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav  className="navbar navbar-expand-lg navbar-dark bg-dark">
             <h1 className="navbar-brand">Game Bazaar</h1>
             <br />
             {props.user ? (
-                <span className="navbar-brand">Hello {props.user.name}!</span>
+                <span style={{fontWeight: 'bolder', color: 'white'}} className="navbar-brand">Hello {props.user.name}!</span>
             ) : (
                     <span className="navbar-brand">Please Sign In !</span>
                 )}

@@ -65,10 +65,10 @@ class Index extends Component {
                                 <br/>
                                 <Link to={`/show/${game._id}`} className="btn btn-secondary">View</Link></p>
                             {game.userId === this.state.currentId ? (
-                                <ul style={{alignContent: 'center'}} >
-                                    <button  style={{margin:'10px', borderRadius:'50%'}} className='btn btn-danger' onClick={() => this.handleDelete(`${game._id}`)}>Delete Game</button>
+                                <ul style={{alignContent: 'center', padding: '0 10px 0 0'}} >
+                                    <button  style={{margin:'10px', borderRadius:'5%'}} className="btn btn-secondary" onClick={() => this.handleDelete(`${game._id}`)}>Delete Game</button>
                                 
-                                    <Link style={{margin:'10px', borderRadius:'50%'}} to={`/games/${game._id}/edit`} className="btn btn-primary">Edit Post</Link>
+                                    <Link style={{margin:'10px', borderRadius:'5%'}} to={`/games/${game._id}/edit`} className="btn btn-secondary">Edit Post</Link>
                                 </ul>
                             ) : (
                                     <></>
