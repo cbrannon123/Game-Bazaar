@@ -63,7 +63,7 @@ class Show extends Component {
             )
         });
         return (
-            <div>
+            <div style={{textAlign:'center'}}>
                 <h3 >Game Info</h3>
                 <hr />
                 <h1 className='card'>

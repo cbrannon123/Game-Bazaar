@@ -42,13 +42,14 @@ class LocationInputPage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{textAlign:'center'}}>
                 <h3>Enter Game Info</h3>
                 <hr />
-                <form onSubmit={this.handleSubmit}>
+                <form  onSubmit={this.handleSubmit}>
                     <div className="dropdown">
                         <select onChange={this.onChange} name='platform' value={this.state.platform} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <option className="dropdown-menu" aria-labelledby="dropdownMenuButton">Select Platform</option>
+                            <option className="dropdown-menu" >Select Platform</option>
+                            <option className="dropdown-item" >Select Platform</option>
                             <option className="dropdown-item" >PS4</option>
                             <option className="dropdown-item" >XBOX</option>
                             <option className="dropdown-item" >NSW</option>
